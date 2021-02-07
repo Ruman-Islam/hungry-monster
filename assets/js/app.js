@@ -1,130 +1,63 @@
-const searchButton = document.querySelector('#search-btn');
-searchButton.addEventListener('click', () => {
-    const foodInput = document.querySelector('#food-input').value;
+// * search button
+const searchButton = document.getElementById('search-btn');
+searchButton.addEventListener('click', function () {
+    const foodInput = document.getElementById('food-input').value;
     loadData(foodInput);
 })
 
-async function loadData(foodName) {
-    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${foodName}`;
+// * display food data
+async function loadData(name) {
+    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`;
     const response = await fetch(url)
     const data = await response.json()
     displayData(data);
 }
 
+// * display food data
 const displayData = data => {
-    const foodInput = document.querySelector('#food-input').value;
-    const parentDiv = document.getElementById('foodInfo-area');
+    const displayItem = document.getElementById('content');
     const meal = data.meals;
+    let empty = '';
     meal.forEach(element => {
-        console.log(element);
-        const foodName = element.strMeal;
-        const foodImg = element.strMealThumb;
         const foodInfo = `
-            <div onclick=loadMoreData('${foodInput}') class="foodInfoDiv">
-                <img src="${foodImg}">
-                <h5>${foodName}</h5>
+        <div onclick ="loadMoreData('${element.strMeal}')" class="card food-info">
+            <img src="${element.strMealThumb}" class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">${element.strMeal}</h5>
             </div>
-        `;
-        parentDiv.innerHTML = foodInfo;
-    });
-}
-
-async function loadMoreData(foodName) {
-    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${foodName}`;
-    const response = await fetch(url)
-    const data = await response.json()
-    displayMoreData(data);
-}
-
-const displayMoreData = data => {
-    document.getElementById('search-areaDiv').style.visibility = 'hidden';
-    const parentDiv = document.getElementById('foodInfo-area');
-    const meal = data.meals;
-    meal.forEach(element => {
-        const foodInfo = `
-        <div class="img-info">
-            <img src="${element.strMealThumb}">
-            <h5>${element.strMeal}</h5>
         </div>
-        <div class="food-info">
-            <h4>Ingredients</h4>
-            <ul>
-                <li>${element.strIngredient1}</li>
-                <li>${element.strIngredient2}</li>
-                <li>${element.strIngredient3}</li>
-                <li>${element.strIngredient4}</li>
-                <li>${element.strIngredient5}</li>
-                <li>${element.strIngredient6}</li>
-                <li>${element.strIngredient7}</li>
-                <li>${element.strIngredient8}</li>
-                <li>${element.strIngredient9}</li>
+        `;
+        empty = empty + foodInfo;
+    });
+    displayItem.innerHTML = empty;
+}
+
+// * display more food info
+const loadMoreData = name => {
+    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`;
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const meal = data.meals[0];
+            const showMealItem = document.getElementById('show-meal-item');
+            const foodInfo = `
+        <div id="img-info">
+            <img src="${meal.strMealThumb}">
+            <h4>${meal.strMeal}</h4>  
+            <h6>Ingredients</h6>
+            <ul class="list-unstyled">
+                <li>${meal.strMeasure1} ${meal.strIngredient1}</li>
+                <li>${meal.strMeasure2} ${meal.strIngredient2}</li>
+                <li>${meal.strMeasure3} ${meal.strIngredient3}</li>
+                <li>${meal.strMeasure4} ${meal.strIngredient4}</li>
+                <li>${meal.strMeasure5} ${meal.strIngredient5}</li>
+                <li>${meal.strMeasure6} ${meal.strIngredient6}</li>
+                <li>${meal.strMeasure7} ${meal.strIngredient7}</li>
+                <li>${meal.strMeasure8} ${meal.strIngredient8}</li>
+                <li>${meal.strMeasure9} ${meal.strIngredient9}</li>
             </ul>
         </div>
         `;
-        parentDiv.innerHTML = foodInfo;
-    });
+            showMealItem.innerHTML = foodInfo;
+        })
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const searchButton = document.querySelector('#search-btn');
-// searchButton.addEventListener('click', () => {
-//     const foodInput = document.querySelector('#food-input').value;
-//     sendApiRequest(foodInput);
-// })
-
-// async function sendApiRequest(foodName) {
-//     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${foodName}`;
-//     const response = await fetch(url)
-//     const data = await response.json()
-//     getData(data.meals);
-// }
-
-// const getData = foodArray => {
-//     console.log(foodArray);
-//     const mealName = foodArray[0].strMeal;
-//     const mealImage = foodArray[0].strMealThumb;
-//     updateUI(mealName, mealImage);
-// }
-
-// function updateUI(name, image) {
-//     const foodInput = document.querySelector('#food-input').value;
-//     const foodInfoArea = document.querySelector('#foodImg-area');
-//     console.log(name);
-//     const info = `
-//         <div onclick = loadMoreData('${foodInput}') class="foodInfoDiv">
-//             <img src="${image}">
-//             <h5>${name}</h5>
-//         </div>
-//     `;
-//     foodInfoArea.innerHTML = info;
-// }
-
-// function loadMoreData(foodName) {
-//     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${foodName}`)
-//         .then(response => response.json())
-//         .then(data => {
-//             const meal = data.meals;
-//             const foodInfoArea = document.querySelector('#foodImg-area');
-//             meal.forEach(element => {
-//                     foodInfoArea.innerHTML = `
-//                     <p>${element.strIngredient1} </p>
-//                     <p>${element.strIngredient2} </p>
-//                     <p>${element.strIngredient3} </p>
-//                     <p>${element.strIngredient4} </p>
-//                 `;
-//             });
-//         })
-// }

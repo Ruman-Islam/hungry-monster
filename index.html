@@ -16,7 +16,7 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary container">
+    <nav class="navbar navbar-expand-lg navbar-light container">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Hungry Master</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -36,31 +36,23 @@
 
     <!-- Main part -->
     <main class="container">
-        <section id="search-areaDiv">
-            <!-- Search area -->
-            <div class="search-area">
-                <input type="text" name="" id="food-input">
-                <button id="search-btn">Search</button>
-            </div>
-        </section>
-        <section>
-            <div id="foodInfo-area">
+        <!-- Search Area -->
+        <div class="search-area">
+            <input type="text" id="food-input" placeholder="search food">
+            <button id="search-btn">
+                Search
+            </button>
+        </div>
 
-            </div>
-        </section>
+        <!-- Show individual food info -->
+        <div id="show-meal-item">
+
+        </div>
+        <!-- Show food items -->
+        <div id="content" class="food-content">
+            
+        </div>
     </main>
-
-
-
-
-
-
-
-
-
-
-
-
     <script src="assets/js/app.js"></script>
 </body>
 
