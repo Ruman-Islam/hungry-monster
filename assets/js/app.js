@@ -5,6 +5,7 @@ searchButton.addEventListener('click', function () {
     loadData(foodInput);
 })
 
+
 // * display food data
 async function loadData(name) {
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`;
@@ -12,6 +13,7 @@ async function loadData(name) {
     const data = await response.json()
     displayData(data);
 }
+
 
 // * display food data
 const displayData = data => {
@@ -31,6 +33,7 @@ const displayData = data => {
     });
     displayItem.innerHTML = empty;
 }
+
 
 // * display more food info
 const loadMoreData = name => {
