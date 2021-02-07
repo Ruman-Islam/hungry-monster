@@ -7,6 +7,7 @@ searchButton.addEventListener('click', () => {
     }
     else {
         loadData(foodName);
+        document.getElementById('show-meal-item').style.display = 'none';
     }
 })
 
@@ -49,6 +50,7 @@ const displayData = data => {
 
 //* Display Extra Food Info
 const loadExtraInfo = name => {
+    document.getElementById('show-meal-item').style.display = 'block';
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`;
     fetch(url)
         .then(response => response.json())
