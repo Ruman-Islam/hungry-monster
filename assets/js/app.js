@@ -7,16 +7,10 @@ searchButton.addEventListener('click', () => {
     }
     else {
         loadData(foodName);
+        document.getElementById('error').style.display = 'none';
         document.getElementById('show-meal-item').style.display = 'none';
     }
 })
-
-
-//* Close Error Messege
-function hideError() {
-    const errorBody = document.getElementById("error")
-    errorBody.style.display = "none";
-}
 
 
 //* Display Food Data
