@@ -45,9 +45,15 @@ button {
 }
 
 #img-info {
+    width: 310px;
+    padding: 5px;
+    background-color: white;
     display: block;
+    border: 1px solid goldenrod;
+    border-radius: 5px;
     margin-top: 20px;
     margin-left: 400px;
+    overflow: hidden;
 }
 
 #img-info img {
