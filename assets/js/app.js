@@ -32,9 +32,13 @@ async function loadData(name) {
 const displayData = data => {
     const displayItem = document.getElementById('content');
     const meal = data.meals;
-    let empty = '';
-    meal.forEach(element => {
-        const foodInfo = `
+    if (meal === null) {
+        alert('Opps! No data found');
+    }
+    else {
+        let empty = '';
+        meal.forEach(element => {
+            const foodInfo = `
         <div onclick ="loadExtraInfo('${element.strMeal}')" class="card food-info">
             <img src="${element.strMealThumb}" class="card-img-top" alt="...">
             <div class="card-body">
@@ -42,9 +46,10 @@ const displayData = data => {
             </div>
         </div>
         `;
-        empty = empty + foodInfo;
-    });
-    displayItem.innerHTML = empty;
+            empty = empty + foodInfo;
+        });
+        displayItem.innerHTML = empty;
+    }
 }
 
 
