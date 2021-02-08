@@ -7,9 +7,17 @@ searchButton.addEventListener('click', () => {
     }
     else {
         loadData(foodName);
-        showError('none', 'block', 'visible');
+        showError('none', 'none', 'visible');
     }
 })
+
+
+//* Function of Display Error Message
+const showError = (displayError, displayMealInfo, displayContent) => {
+    document.getElementById('error').style.display = displayError;
+    document.getElementById('show-meal-item').style.display = displayMealInfo;
+    document.getElementById('content').style.visibility = displayContent;
+}
 
 
 //* Display Food Data
@@ -76,13 +84,4 @@ const loadExtraInfo = name => {
             showMealItem.innerHTML = foodInfo;
         })
 }
-
-
-//* Function of Display Error Message
-const showError = (displayError, displayMealInfo, displayContent) => {
-    document.getElementById('error').style.display = displayError;
-    document.getElementById('show-meal-item').style.display = displayMealInfo;
-    document.getElementById('content').style.visibility = displayContent;
-}
-
 //* Thank You
