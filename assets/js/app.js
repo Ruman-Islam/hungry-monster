@@ -71,10 +71,6 @@ const loadExtraInfo = name => {
                     <li>${meal.strMeasure3} ${meal.strIngredient3}</li>
                     <li>${meal.strMeasure4} ${meal.strIngredient4}</li>
                     <li>${meal.strMeasure5} ${meal.strIngredient5}</li>
-                    <li>${meal.strMeasure6} ${meal.strIngredient6}</li>
-                    <li>${meal.strMeasure7} ${meal.strIngredient7}</li>
-                    <li>${meal.strMeasure8} ${meal.strIngredient8}</li>
-                    <li>${meal.strMeasure9} ${meal.strIngredient9}</li>
                 </ul>
             </div>
         </div>
