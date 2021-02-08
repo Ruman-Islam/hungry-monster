@@ -49,6 +49,7 @@ const displayData = data => {
 
 //* Display Extra Food Info
 const loadExtraInfo = name => {
+    document.getElementById('error').style.display = 'none';
     document.getElementById('show-meal-item').style.display = 'block';
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`;
     fetch(url)
