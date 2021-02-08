@@ -3,12 +3,11 @@ const searchButton = document.getElementById('search-btn');
 searchButton.addEventListener('click', () => {
     const foodName = document.getElementById('food-input').value;
     if (foodName === '') {
-        document.getElementById('error').style.display = 'block';
+        showError('block', 'none', 'hidden');
     }
     else {
         loadData(foodName);
-        document.getElementById('error').style.display = 'none';
-        document.getElementById('show-meal-item').style.display = 'none';
+        showError('none', 'block', 'visible');
     }
 })
 
@@ -76,6 +75,14 @@ const loadExtraInfo = name => {
         `;
             showMealItem.innerHTML = foodInfo;
         })
+}
+
+
+//* Function of Display Error Message
+const showError = (displayError, displayMealInfo, displayContent) => {
+    document.getElementById('error').style.display = displayError;
+    document.getElementById('show-meal-item').style.display = displayMealInfo;
+    document.getElementById('content').style.visibility = displayContent;
 }
 
 //* Thank You
